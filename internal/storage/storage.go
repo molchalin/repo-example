@@ -3,8 +3,8 @@ package storage
 import "errors"
 
 var (
-	ErrNotFound      = errors.New("Not Found")
-	ErrAlreadyExists = errors.New("Already Exists")
+	ErrNotFound      = errors.New("not found")
+	ErrAlreadyExists = errors.New("already exists")
 )
 
 type Storage interface {
