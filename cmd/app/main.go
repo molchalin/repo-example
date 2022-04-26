@@ -5,14 +5,14 @@ import (
 
 	"github.com/go-chi/chi/v5"
 
-	"github.com/molchalin/repo-example/internal/ram"
 	"github.com/molchalin/repo-example/internal/server"
+	"github.com/molchalin/repo-example/internal/storage"
 )
 
 func main() {
 	m := chi.NewRouter()
 
-	st := ram.New()
+	st := storage.NewInMemory()
 
 	s := server.New(st)
 
