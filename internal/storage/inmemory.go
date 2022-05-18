@@ -1,7 +1,10 @@
 package storage
 
+import "sync"
+
 type InMemory struct {
-	m map[string]string
+	lock sync.Mutex
+	m    map[string]string
 }
 
 func NewInMemory() Storage {
@@ -11,6 +14,9 @@ func NewInMemory() Storage {
 }
 
 func (s *InMemory) Get(key string) (string, error) {
+	s.lock.Lock()
+	defer s.lock.Unlock()
+
 	if v, ok := s.m[key]; ok {
 		return v, nil
 	}
@@ -18,6 +24,9 @@ func (s *InMemory) Get(key string) (string, error) {
 }
 
 func (s *InMemory) Put(key string, value string) error {
+	s.lock.Lock()
+	defer s.lock.Unlock()
+
 	if _, ok := s.m[key]; ok {
 		return ErrAlreadyExists
 	}
