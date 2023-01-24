@@ -7,7 +7,7 @@ type InMemory struct {
 	m    map[string]string
 }
 
-func NewInMemory() Storage {
+func NewInMemory() *InMemory {
 	return &InMemory{
 		m: make(map[string]string),
 	}
